@@ -1,0 +1,1120 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>diffpy.cmisas package &mdash; diffpy.cmisas 0.1.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release notes" href="../release.html" />
+    <link rel="prev" title="Getting started" href="../getting-started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            diffpy.cmisas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#diffpy.cmisas.CFCalculator"><code class="docutils literal notranslate"><span class="pre">CFCalculator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.CFCalculator._invertor"><code class="docutils literal notranslate"><span class="pre">CFCalculator._invertor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.CFCalculator.scale"><code class="docutils literal notranslate"><span class="pre">CFCalculator.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.CFCalculator.q"><code class="docutils literal notranslate"><span class="pre">CFCalculator.q</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.CFCalculator.iq"><code class="docutils literal notranslate"><span class="pre">CFCalculator.iq</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.CFCalculator.diq"><code class="docutils literal notranslate"><span class="pre">CFCalculator.diq</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#diffpy.cmisas.PrCalculator"><code class="docutils literal notranslate"><span class="pre">PrCalculator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.PrCalculator._invertor"><code class="docutils literal notranslate"><span class="pre">PrCalculator._invertor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.PrCalculator.scale"><code class="docutils literal notranslate"><span class="pre">PrCalculator.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.PrCalculator.q"><code class="docutils literal notranslate"><span class="pre">PrCalculator.q</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.PrCalculator.iq"><code class="docutils literal notranslate"><span class="pre">PrCalculator.iq</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.PrCalculator.diq"><code class="docutils literal notranslate"><span class="pre">PrCalculator.diq</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#diffpy.cmisas.SASGenerator"><code class="docutils literal notranslate"><span class="pre">SASGenerator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASGenerator._model"><code class="docutils literal notranslate"><span class="pre">SASGenerator._model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#diffpy.cmisas.SASParser"><code class="docutils literal notranslate"><span class="pre">SASParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._format"><code class="docutils literal notranslate"><span class="pre">SASParser._format</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._banks"><code class="docutils literal notranslate"><span class="pre">SASParser._banks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._x"><code class="docutils literal notranslate"><span class="pre">SASParser._x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._y"><code class="docutils literal notranslate"><span class="pre">SASParser._y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._dx"><code class="docutils literal notranslate"><span class="pre">SASParser._dx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._dy"><code class="docutils literal notranslate"><span class="pre">SASParser._dy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser._meta"><code class="docutils literal notranslate"><span class="pre">SASParser._meta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASParser.parse_file"><code class="docutils literal notranslate"><span class="pre">SASParser.parse_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#diffpy.cmisas.SASProfile"><code class="docutils literal notranslate"><span class="pre">SASProfile</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile._xobs"><code class="docutils literal notranslate"><span class="pre">SASProfile._xobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.xobs"><code class="docutils literal notranslate"><span class="pre">SASProfile.xobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile._yobs"><code class="docutils literal notranslate"><span class="pre">SASProfile._yobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.yobs"><code class="docutils literal notranslate"><span class="pre">SASProfile.yobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile._dyobs"><code class="docutils literal notranslate"><span class="pre">SASProfile._dyobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.dyobs"><code class="docutils literal notranslate"><span class="pre">SASProfile.dyobs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.x"><code class="docutils literal notranslate"><span class="pre">SASProfile.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.y"><code class="docutils literal notranslate"><span class="pre">SASProfile.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.dy"><code class="docutils literal notranslate"><span class="pre">SASProfile.dy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.ycalc"><code class="docutils literal notranslate"><span class="pre">SASProfile.ycalc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.xpar"><code class="docutils literal notranslate"><span class="pre">SASProfile.xpar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.ypar"><code class="docutils literal notranslate"><span class="pre">SASProfile.ypar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.dypar"><code class="docutils literal notranslate"><span class="pre">SASProfile.dypar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.meta"><code class="docutils literal notranslate"><span class="pre">SASProfile.meta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile._datainfo"><code class="docutils literal notranslate"><span class="pre">SASProfile._datainfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#diffpy.cmisas.SASProfile.set_observed_profile"><code class="docutils literal notranslate"><span class="pre">SASProfile.set_observed_profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.sasgenerator">diffpy.cmisas.sasgenerator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.sasgenerator.SASGenerator"><code class="docutils literal notranslate"><span class="pre">SASGenerator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.sasparser">diffpy.cmisas.sasparser module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.sasparser.SASParser"><code class="docutils literal notranslate"><span class="pre">SASParser</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.sasprofile">diffpy.cmisas.sasprofile module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.sasprofile.SASProfile"><code class="docutils literal notranslate"><span class="pre">SASProfile</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.sasparameter">diffpy.cmisas.sasparameter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.sasparameter.SASParameter"><code class="docutils literal notranslate"><span class="pre">SASParameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.prcalculator">diffpy.cmisas.prcalculator module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.prcalculator.CFCalculator"><code class="docutils literal notranslate"><span class="pre">CFCalculator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.prcalculator.PrCalculator"><code class="docutils literal notranslate"><span class="pre">PrCalculator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.characteristicfunctions">diffpy.cmisas.characteristicfunctions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.characteristicfunctions.SASCF"><code class="docutils literal notranslate"><span class="pre">SASCF</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.cmisas.sasimport">diffpy.cmisas.sasimport module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.cmisas.sasimport.sasimport"><code class="docutils literal notranslate"><span class="pre">sasimport()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">diffpy.cmisas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">diffpy.cmisas package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/diffpy/diffpy.cmisas/blob/main/docs/source/api/diffpy.cmisas.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-diffpy.cmisas">
+<span id="diffpy-cmisas-package"></span><h1>diffpy.cmisas package<a class="headerlink" href="#module-diffpy.cmisas" title="Link to this heading"></a></h1>
+<p>The code of the SAS pack of the diffpy.cmi package.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.</span></span><span class="sig-name descname"><span class="pre">CFCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/prcalculator.html#CFCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.CFCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#diffpy.cmisas.prcalculator.PrCalculator" title="diffpy.cmisas.prcalculator.PrCalculator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrCalculator</span></code></a></p>
+<p>A class for calculating the characteristic function (CF) from
+data.</p>
+<p>This calculator produces
+f(r) = P(r) / 4 pi r**2
+which is the nanoparticle form factor scaled by density.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator._invertor">
+<span class="sig-name descname"><span class="pre">_invertor</span></span><a class="headerlink" href="#diffpy.cmisas.CFCalculator._invertor" title="Link to this definition"></a></dt>
+<dd><p>sas.pr.invertor.Invertor object. This object is internal,
+but can be configured by the user after initialization.
+Note that the ‘x’, ‘y’ and ‘err’ attributes get overwritten
+every time the invertor is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">------------------</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#diffpy.cmisas.CFCalculator.scale" title="Link to this definition"></a></dt>
+<dd><p>The scale factor (default 1).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator.q">
+<span class="sig-name descname"><span class="pre">q</span></span><a class="headerlink" href="#diffpy.cmisas.CFCalculator.q" title="Link to this definition"></a></dt>
+<dd><p>The q-values of the I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator.iq">
+<span class="sig-name descname"><span class="pre">iq</span></span><a class="headerlink" href="#diffpy.cmisas.CFCalculator.iq" title="Link to this definition"></a></dt>
+<dd><p>The I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.CFCalculator.diq">
+<span class="sig-name descname"><span class="pre">diq</span></span><a class="headerlink" href="#diffpy.cmisas.CFCalculator.diq" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in I(q)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.</span></span><span class="sig-name descname"><span class="pre">PrCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/prcalculator.html#PrCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.PrCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Calculator</span></code></p>
+<p>A class for calculating P(r) from data.</p>
+<p>This is provided so that SAS data can be used to calculate a nanoparticle
+form factor (characteristic function) for nanoparticle PDF refinements. For
+a crystal-like nanoparticle:
+Gnano(r) = f(r)Gcrystal(r),
+where f(r) is the nanoparticle form factor.
+This is obtained from P(r) as
+P(r) = 4 pi r**2 f(r).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator._invertor">
+<span class="sig-name descname"><span class="pre">_invertor</span></span><a class="headerlink" href="#diffpy.cmisas.PrCalculator._invertor" title="Link to this definition"></a></dt>
+<dd><p>sas.pr.invertor.Invertor object. This object is internal,
+but can be configured by the user after initialization.
+Note that the ‘x’, ‘y’ and ‘err’ attributes get overwritten
+every time the invertor is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">------------------</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#diffpy.cmisas.PrCalculator.scale" title="Link to this definition"></a></dt>
+<dd><p>The scale factor (default 1).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator.q">
+<span class="sig-name descname"><span class="pre">q</span></span><a class="headerlink" href="#diffpy.cmisas.PrCalculator.q" title="Link to this definition"></a></dt>
+<dd><p>The q-values of the I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator.iq">
+<span class="sig-name descname"><span class="pre">iq</span></span><a class="headerlink" href="#diffpy.cmisas.PrCalculator.iq" title="Link to this definition"></a></dt>
+<dd><p>The I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.PrCalculator.diq">
+<span class="sig-name descname"><span class="pre">diq</span></span><a class="headerlink" href="#diffpy.cmisas.PrCalculator.diq" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in I(q)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASGenerator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.</span></span><span class="sig-name descname"><span class="pre">SASGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasgenerator.html#SASGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.SASGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileGenerator</span></code></p>
+<p>A class for calculating I(Q) from a scattering type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASGenerator._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#diffpy.cmisas.SASGenerator._model" title="Link to this definition"></a></dt>
+<dd><p>BaseModel object this adapts.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd><p>These depend on the parameters of the BaseModel object held by _model.
+They are created from the ‘params’ attribute of the BaseModel. If a
+dispersion is set for the BaseModel, the dispersion “width” will be
+accessible under “&lt;parname&gt;_width”, where &lt;parname&gt; is the name a
+parameter adjusted by dispersion.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.</span></span><span class="sig-name descname"><span class="pre">SASParser</span></span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparser.html#SASParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.SASParser" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileParser</span></code></p>
+<p>Class for parsing a sas profile.</p>
+<p>This uses a sas DataLoader to load the data. The DataInfo object it returns
+is held in the metadata under the name “datainfo”.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._format">
+<span class="sig-name descname"><span class="pre">_format</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._format" title="Link to this definition"></a></dt>
+<dd><p>Name of the data format that this parses (string, default
+“”). The format string is a unique identifier for the data
+format handled by the parser.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._banks">
+<span class="sig-name descname"><span class="pre">_banks</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._banks" title="Link to this definition"></a></dt>
+<dd><p>The data from each bank. Each bank contains a
+(x, y, dx, dy) tuple:</p>
+<dl class="simple">
+<dt>x</dt><dd><p>A numpy array containing the independent
+variable read from the file.</p>
+</dd>
+<dt>y</dt><dd><p>A numpy array containing the profile
+from the file.</p>
+</dd>
+<dt>dx</dt><dd><p>A numpy array containing the uncertainty in x
+read from the file. This is 0 if the
+uncertainty cannot be read.</p>
+</dd>
+<dt>dy</dt><dd><p>A numpy array containing the uncertainty read
+from the file. This is 0 if the uncertainty
+cannot be read.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._x">
+<span class="sig-name descname"><span class="pre">_x</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._x" title="Link to this definition"></a></dt>
+<dd><p>Independent variable from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._y">
+<span class="sig-name descname"><span class="pre">_y</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._y" title="Link to this definition"></a></dt>
+<dd><p>Profile from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._dx">
+<span class="sig-name descname"><span class="pre">_dx</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._dx" title="Link to this definition"></a></dt>
+<dd><p>Uncertainty in independent variable from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._dy">
+<span class="sig-name descname"><span class="pre">_dy</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._dy" title="Link to this definition"></a></dt>
+<dd><p>Uncertainty in profile from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser._meta">
+<span class="sig-name descname"><span class="pre">_meta</span></span><a class="headerlink" href="#diffpy.cmisas.SASParser._meta" title="Link to this definition"></a></dt>
+<dd><p>A dictionary containing metadata read from the file.</p>
+</dd></dl>
+
+<section id="general-metadata">
+<h2>General Metadata<a class="headerlink" href="#general-metadata" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>filename</dt><dd><p>The name of the file from which data was parsed. This key
+will not exist if data was not read from file.</p>
+</dd>
+<dt>nbanks</dt><dd><p>The number of banks parsed.</p>
+</dd>
+<dt>bank</dt><dd><p>The chosen bank number.</p>
+</dd>
+</dl>
+</section>
+<section id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>datainfo</dt><dd><p>The DataInfo object used to do the data parsing.</p>
+</dd>
+</dl>
+<p>These may appear in the metadata dictionary</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASParser.parse_file">
+<span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparser.html#SASParser.parse_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.SASParser.parse_file" title="Link to this definition"></a></dt>
+<dd><p>Parse a file and set the _x, _y, _dx, _dy and _meta
+variables.</p>
+<p>The sas DataLoader reads the data and the metadata together, so
+this overrides parse_file itself rather than the
+<cite>_parse_metadata</cite> and <cite>_parse_data</cite> hooks.</p>
+<p>This wipes out the currently loaded data and selected bank number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The name of the file to parse</p></li>
+<li><p><strong>column_format</strong> – Unused. Accepted so that the signature matches
+<cite>ProfileParser.parse_file</cite>.</p></li>
+<li><p><strong>kwargs</strong> – Unused. Accepted so that the signature matches
+<cite>ProfileParser.parse_file</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>IOError</strong> – if the file cannot be read</p></li>
+<li><p><strong>ParseError</strong> – if the file cannot be parsed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.</span></span><span class="sig-name descname"><span class="pre">SASProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datainfo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasprofile.html#SASProfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.SASProfile" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Profile</span></code></p>
+<p>Observed and calculated profile container for SAS data.</p>
+<p>This wraps a sas DataInfo object as a Profile object. Use this when you
+want to use and manipulate a DataProfile before using it with SrFit.
+Otherwise, use the SASParser class and load the data into a base Profile
+object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile._xobs">
+<span class="sig-name descname"><span class="pre">_xobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile._xobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the observed independent variable (default
+None)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.xobs">
+<span class="sig-name descname"><span class="pre">xobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.xobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _xobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile._yobs">
+<span class="sig-name descname"><span class="pre">_yobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile._yobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the observed signal (default None)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.yobs">
+<span class="sig-name descname"><span class="pre">yobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.yobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _yobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile._dyobs">
+<span class="sig-name descname"><span class="pre">_dyobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile._dyobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the uncertainty of the observed signal
+(default None, optional).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.dyobs">
+<span class="sig-name descname"><span class="pre">dyobs</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.dyobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _dyobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.x" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the calculated independent variable (default
+None, property for xpar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.y" title="Link to this definition"></a></dt>
+<dd><p>The profile over the calculation range (default None, property
+for ypar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.dy">
+<span class="sig-name descname"><span class="pre">dy</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.dy" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in the profile over the calculation range
+(default None, property for dypar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.ycalc">
+<span class="sig-name descname"><span class="pre">ycalc</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.ycalc" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the calculated signal (default None).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.xpar">
+<span class="sig-name descname"><span class="pre">xpar</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.xpar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores x (named “x”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.ypar">
+<span class="sig-name descname"><span class="pre">ypar</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.ypar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores y (named “y”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.dypar">
+<span class="sig-name descname"><span class="pre">dypar</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.dypar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores dy (named “dy”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.meta">
+<span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile.meta" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of metadata. This is only set if provided by a
+parser.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile._datainfo">
+<span class="sig-name descname"><span class="pre">_datainfo</span></span><a class="headerlink" href="#diffpy.cmisas.SASProfile._datainfo" title="Link to this definition"></a></dt>
+<dd><p>The DataInfo object this wraps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.SASProfile.set_observed_profile">
+<span class="sig-name descname"><span class="pre">set_observed_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dyobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasprofile.html#SASProfile.set_observed_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.SASProfile.set_observed_profile" title="Link to this definition"></a></dt>
+<dd><p>Set the observed profile.</p>
+<p>This is overloaded to change the value within the datainfo object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xobs</strong> – Numpy array of the independent variable.</p></li>
+<li><p><strong>yobs</strong> – Numpy array of the observed signal.</p></li>
+<li><p><strong>dyobs</strong> – Numpy array of the uncertainty in the observed signal. If
+<code class="docutils literal notranslate"><span class="pre">dyobs</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), it stays <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate
+no uncertainty was observed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">len(yobs)</span> <span class="pre">!=</span> <span class="pre">len(xobs)</span></code>.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">dyobs</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">len(dyobs)</span> <span class="pre">!=</span> <span class="pre">len(xobs)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<section id="module-diffpy.cmisas.sasgenerator">
+<span id="diffpy-cmisas-sasgenerator-module"></span><h3>diffpy.cmisas.sasgenerator module<a class="headerlink" href="#module-diffpy.cmisas.sasgenerator" title="Link to this heading"></a></h3>
+<p>SAS profile generator.</p>
+<p>The SASGenerator class wraps a sas.models.BaseModel object as a
+ProfileGenerator.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasgenerator.SASGenerator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.sasgenerator.</span></span><span class="sig-name descname"><span class="pre">SASGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasgenerator.html#SASGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasgenerator.SASGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileGenerator</span></code></p>
+<p>A class for calculating I(Q) from a scattering type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasgenerator.SASGenerator._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#diffpy.cmisas.sasgenerator.SASGenerator._model" title="Link to this definition"></a></dt>
+<dd><p>BaseModel object this adapts.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd><p>These depend on the parameters of the BaseModel object held by _model.
+They are created from the ‘params’ attribute of the BaseModel. If a
+dispersion is set for the BaseModel, the dispersion “width” will be
+accessible under “&lt;parname&gt;_width”, where &lt;parname&gt; is the name a
+parameter adjusted by dispersion.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.sasparser">
+<span id="diffpy-cmisas-sasparser-module"></span><h3>diffpy.cmisas.sasparser module<a class="headerlink" href="#module-diffpy.cmisas.sasparser" title="Link to this heading"></a></h3>
+<p>This module contains parsers for SAS data.</p>
+<p>SASParser uses the sas DataLoader class to load data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.sasparser.</span></span><span class="sig-name descname"><span class="pre">SASParser</span></span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparser.html#SASParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProfileParser</span></code></p>
+<p>Class for parsing a sas profile.</p>
+<p>This uses a sas DataLoader to load the data. The DataInfo object it returns
+is held in the metadata under the name “datainfo”.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._format">
+<span class="sig-name descname"><span class="pre">_format</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._format" title="Link to this definition"></a></dt>
+<dd><p>Name of the data format that this parses (string, default
+“”). The format string is a unique identifier for the data
+format handled by the parser.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._banks">
+<span class="sig-name descname"><span class="pre">_banks</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._banks" title="Link to this definition"></a></dt>
+<dd><p>The data from each bank. Each bank contains a
+(x, y, dx, dy) tuple:</p>
+<dl class="simple">
+<dt>x</dt><dd><p>A numpy array containing the independent
+variable read from the file.</p>
+</dd>
+<dt>y</dt><dd><p>A numpy array containing the profile
+from the file.</p>
+</dd>
+<dt>dx</dt><dd><p>A numpy array containing the uncertainty in x
+read from the file. This is 0 if the
+uncertainty cannot be read.</p>
+</dd>
+<dt>dy</dt><dd><p>A numpy array containing the uncertainty read
+from the file. This is 0 if the uncertainty
+cannot be read.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._x">
+<span class="sig-name descname"><span class="pre">_x</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._x" title="Link to this definition"></a></dt>
+<dd><p>Independent variable from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._y">
+<span class="sig-name descname"><span class="pre">_y</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._y" title="Link to this definition"></a></dt>
+<dd><p>Profile from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._dx">
+<span class="sig-name descname"><span class="pre">_dx</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._dx" title="Link to this definition"></a></dt>
+<dd><p>Uncertainty in independent variable from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._dy">
+<span class="sig-name descname"><span class="pre">_dy</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._dy" title="Link to this definition"></a></dt>
+<dd><p>Uncertainty in profile from the chosen bank</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser._meta">
+<span class="sig-name descname"><span class="pre">_meta</span></span><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser._meta" title="Link to this definition"></a></dt>
+<dd><p>A dictionary containing metadata read from the file.</p>
+</dd></dl>
+
+<section id="id1">
+<h4>General Metadata<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>filename</dt><dd><p>The name of the file from which data was parsed. This key
+will not exist if data was not read from file.</p>
+</dd>
+<dt>nbanks</dt><dd><p>The number of banks parsed.</p>
+</dd>
+<dt>bank</dt><dd><p>The chosen bank number.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h4>Metadata<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<dl class="simple">
+<dt>datainfo</dt><dd><p>The DataInfo object used to do the data parsing.</p>
+</dd>
+</dl>
+<p>These may appear in the metadata dictionary</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparser.SASParser.parse_file">
+<span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparser.html#SASParser.parse_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasparser.SASParser.parse_file" title="Link to this definition"></a></dt>
+<dd><p>Parse a file and set the _x, _y, _dx, _dy and _meta
+variables.</p>
+<p>The sas DataLoader reads the data and the metadata together, so
+this overrides parse_file itself rather than the
+<cite>_parse_metadata</cite> and <cite>_parse_data</cite> hooks.</p>
+<p>This wipes out the currently loaded data and selected bank number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The name of the file to parse</p></li>
+<li><p><strong>column_format</strong> – Unused. Accepted so that the signature matches
+<cite>ProfileParser.parse_file</cite>.</p></li>
+<li><p><strong>kwargs</strong> – Unused. Accepted so that the signature matches
+<cite>ProfileParser.parse_file</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>IOError</strong> – if the file cannot be read</p></li>
+<li><p><strong>ParseError</strong> – if the file cannot be parsed</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.sasprofile">
+<span id="diffpy-cmisas-sasprofile-module"></span><h3>diffpy.cmisas.sasprofile module<a class="headerlink" href="#module-diffpy.cmisas.sasprofile" title="Link to this heading"></a></h3>
+<p>Class for adapting a sas DataInfo objects to the Profile
+interface.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.sasprofile.</span></span><span class="sig-name descname"><span class="pre">SASProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datainfo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasprofile.html#SASProfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Profile</span></code></p>
+<p>Observed and calculated profile container for SAS data.</p>
+<p>This wraps a sas DataInfo object as a Profile object. Use this when you
+want to use and manipulate a DataProfile before using it with SrFit.
+Otherwise, use the SASParser class and load the data into a base Profile
+object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile._xobs">
+<span class="sig-name descname"><span class="pre">_xobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile._xobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the observed independent variable (default
+None)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.xobs">
+<span class="sig-name descname"><span class="pre">xobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.xobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _xobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile._yobs">
+<span class="sig-name descname"><span class="pre">_yobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile._yobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the observed signal (default None)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.yobs">
+<span class="sig-name descname"><span class="pre">yobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.yobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _yobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile._dyobs">
+<span class="sig-name descname"><span class="pre">_dyobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile._dyobs" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the uncertainty of the observed signal
+(default None, optional).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.dyobs">
+<span class="sig-name descname"><span class="pre">dyobs</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.dyobs" title="Link to this definition"></a></dt>
+<dd><p>Read-only property of _dyobs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.x" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the calculated independent variable (default
+None, property for xpar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.y" title="Link to this definition"></a></dt>
+<dd><p>The profile over the calculation range (default None, property
+for ypar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.dy">
+<span class="sig-name descname"><span class="pre">dy</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.dy" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in the profile over the calculation range
+(default None, property for dypar accessors).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.ycalc">
+<span class="sig-name descname"><span class="pre">ycalc</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.ycalc" title="Link to this definition"></a></dt>
+<dd><p>A numpy array of the calculated signal (default None).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.xpar">
+<span class="sig-name descname"><span class="pre">xpar</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.xpar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores x (named “x”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.ypar">
+<span class="sig-name descname"><span class="pre">ypar</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.ypar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores y (named “y”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.dypar">
+<span class="sig-name descname"><span class="pre">dypar</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.dypar" title="Link to this definition"></a></dt>
+<dd><p>A ProfileParameter that stores dy (named “dy”).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.meta">
+<span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.meta" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of metadata. This is only set if provided by a
+parser.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile._datainfo">
+<span class="sig-name descname"><span class="pre">_datainfo</span></span><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile._datainfo" title="Link to this definition"></a></dt>
+<dd><p>The DataInfo object this wraps.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasprofile.SASProfile.set_observed_profile">
+<span class="sig-name descname"><span class="pre">set_observed_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dyobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasprofile.html#SASProfile.set_observed_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasprofile.SASProfile.set_observed_profile" title="Link to this definition"></a></dt>
+<dd><p>Set the observed profile.</p>
+<p>This is overloaded to change the value within the datainfo object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xobs</strong> – Numpy array of the independent variable.</p></li>
+<li><p><strong>yobs</strong> – Numpy array of the observed signal.</p></li>
+<li><p><strong>dyobs</strong> – Numpy array of the uncertainty in the observed signal. If
+<code class="docutils literal notranslate"><span class="pre">dyobs</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), it stays <code class="docutils literal notranslate"><span class="pre">None</span></code> to indicate
+no uncertainty was observed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">len(yobs)</span> <span class="pre">!=</span> <span class="pre">len(xobs)</span></code>.</p></li>
+<li><p><strong>ValueError</strong> – If <code class="docutils literal notranslate"><span class="pre">dyobs</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">len(dyobs)</span> <span class="pre">!=</span> <span class="pre">len(xobs)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.sasparameter">
+<span id="diffpy-cmisas-sasparameter-module"></span><h3>diffpy.cmisas.sasparameter module<a class="headerlink" href="#module-diffpy.cmisas.sasparameter" title="Link to this heading"></a></h3>
+<p>SAS profile generator.</p>
+<p>The SASGenerator class wraps a sas.models.BaseModel object as a
+ProfileGenerator.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.sasparameter.</span></span><span class="sig-name descname"><span class="pre">SASParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparameter.html#SASParameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Parameter</span></code></p>
+<p>Class adapting a sasmodel parameter to srfit Parameter.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.name" title="Link to this definition"></a></dt>
+<dd><p>A name for this Parameter.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.const">
+<span class="sig-name descname"><span class="pre">const</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.const" title="Link to this definition"></a></dt>
+<dd><p>A flag indicating whether this is considered a constant.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter._value">
+<span class="sig-name descname"><span class="pre">_value</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter._value" title="Link to this definition"></a></dt>
+<dd><p>The value of the Parameter. Modified with ‘set_value’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.value">
+<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.value" title="Link to this definition"></a></dt>
+<dd><p>Property for ‘get_value’ and ‘set_value’.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.constrained">
+<span class="sig-name descname"><span class="pre">constrained</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.constrained" title="Link to this definition"></a></dt>
+<dd><p>A flag indicating if the Parameter is constrained
+(default False).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.bounds">
+<span class="sig-name descname"><span class="pre">bounds</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.bounds" title="Link to this definition"></a></dt>
+<dd><p>A 2-list defining the bounds on the Parameter. This can be
+used by some optimizers when the Parameter is varied. These
+bounds are unrelated to restraints on a Parameter.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter._model" title="Link to this definition"></a></dt>
+<dd><p>The BaseModel to which the underlying parameter belongs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter._parname">
+<span class="sig-name descname"><span class="pre">_parname</span></span><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter._parname" title="Link to this definition"></a></dt>
+<dd><p>The name of the underlying BaseModel parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparameter.html#SASParameter.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.get_value" title="Link to this definition"></a></dt>
+<dd><p>Get the value of the Parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasparameter.SASParameter.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasparameter.html#SASParameter.set_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasparameter.SASParameter.set_value" title="Link to this definition"></a></dt>
+<dd><p>Set the value of the Parameter.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.prcalculator">
+<span id="diffpy-cmisas-prcalculator-module"></span><h3>diffpy.cmisas.prcalculator module<a class="headerlink" href="#module-diffpy.cmisas.prcalculator" title="Link to this heading"></a></h3>
+<p>Nanoparticle form factor P(r) calculator.</p>
+<p>The PrCalculator class wraps a sas.pr.invertor.Invertor object as a
+Calculator. This is not wrapped as a ProfileGenerator because it will be
+used to share information between SAS I(Q) to PDF G(r), but it does not
+use the same profile as the PDF, which is where the calculator will be
+applied.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.prcalculator.</span></span><span class="sig-name descname"><span class="pre">CFCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/prcalculator.html#CFCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#diffpy.cmisas.prcalculator.PrCalculator" title="diffpy.cmisas.prcalculator.PrCalculator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrCalculator</span></code></a></p>
+<p>A class for calculating the characteristic function (CF) from
+data.</p>
+<p>This calculator produces
+f(r) = P(r) / 4 pi r**2
+which is the nanoparticle form factor scaled by density.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator._invertor">
+<span class="sig-name descname"><span class="pre">_invertor</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator._invertor" title="Link to this definition"></a></dt>
+<dd><p>sas.pr.invertor.Invertor object. This object is internal,
+but can be configured by the user after initialization.
+Note that the ‘x’, ‘y’ and ‘err’ attributes get overwritten
+every time the invertor is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">------------------</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator.scale" title="Link to this definition"></a></dt>
+<dd><p>The scale factor (default 1).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator.q">
+<span class="sig-name descname"><span class="pre">q</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator.q" title="Link to this definition"></a></dt>
+<dd><p>The q-values of the I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator.iq">
+<span class="sig-name descname"><span class="pre">iq</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator.iq" title="Link to this definition"></a></dt>
+<dd><p>The I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.CFCalculator.diq">
+<span class="sig-name descname"><span class="pre">diq</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.CFCalculator.diq" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in I(q)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.prcalculator.</span></span><span class="sig-name descname"><span class="pre">PrCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/prcalculator.html#PrCalculator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Calculator</span></code></p>
+<p>A class for calculating P(r) from data.</p>
+<p>This is provided so that SAS data can be used to calculate a nanoparticle
+form factor (characteristic function) for nanoparticle PDF refinements. For
+a crystal-like nanoparticle:
+Gnano(r) = f(r)Gcrystal(r),
+where f(r) is the nanoparticle form factor.
+This is obtained from P(r) as
+P(r) = 4 pi r**2 f(r).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator._invertor">
+<span class="sig-name descname"><span class="pre">_invertor</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator._invertor" title="Link to this definition"></a></dt>
+<dd><p>sas.pr.invertor.Invertor object. This object is internal,
+but can be configured by the user after initialization.
+Note that the ‘x’, ‘y’ and ‘err’ attributes get overwritten
+every time the invertor is used.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">------------------</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator.scale" title="Link to this definition"></a></dt>
+<dd><p>The scale factor (default 1).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator.q">
+<span class="sig-name descname"><span class="pre">q</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator.q" title="Link to this definition"></a></dt>
+<dd><p>The q-values of the I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator.iq">
+<span class="sig-name descname"><span class="pre">iq</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator.iq" title="Link to this definition"></a></dt>
+<dd><p>The I(q) signal</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.prcalculator.PrCalculator.diq">
+<span class="sig-name descname"><span class="pre">diq</span></span><a class="headerlink" href="#diffpy.cmisas.prcalculator.PrCalculator.diq" title="Link to this definition"></a></dt>
+<dd><p>The uncertainty in I(q)</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.characteristicfunctions">
+<span id="diffpy-cmisas-characteristicfunctions-module"></span><h3>diffpy.cmisas.characteristicfunctions module<a class="headerlink" href="#module-diffpy.cmisas.characteristicfunctions" title="Link to this heading"></a></h3>
+<p>Characteristic function calculator backed by sasmodels.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="diffpy.cmisas.characteristicfunctions.SASCF">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.characteristicfunctions.</span></span><span class="sig-name descname"><span class="pre">SASCF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/characteristicfunctions.html#SASCF"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.characteristicfunctions.SASCF" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Calculator</span></code></p>
+<p>Calculator class for characteristic functions from sas-models.</p>
+<p>This class wraps a sas.models.BaseModel to calculate I(Q) related to
+nanoparticle shape. This I(Q) is inverted to f(r) according to:
+f(r) = 1 / (4 pi r) * SINFT(I(Q)),
+where “SINFT” represents the sine Fourier transform.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="diffpy.cmisas.characteristicfunctions.SASCF._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#diffpy.cmisas.characteristicfunctions.SASCF._model" title="Link to this definition"></a></dt>
+<dd><p>BaseModel object this adapts.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Managed</span> <span class="pre">Parameters</span></span></dt>
+<dd><p>These depend on the parameters of the BaseModel object held by _model.
+They are created from the ‘params’ attribute of the BaseModel. If a
+dispersion is set for the BaseModel, the dispersion “width” will be
+accessible under “&lt;parname&gt;_width”, where &lt;parname&gt; is the name a
+parameter adjusted by dispersion.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-diffpy.cmisas.sasimport">
+<span id="diffpy-cmisas-sasimport-module"></span><h3>diffpy.cmisas.sasimport module<a class="headerlink" href="#module-diffpy.cmisas.sasimport" title="Link to this heading"></a></h3>
+<p>Universal import functions for volatile SasView/SansViews API-s.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="diffpy.cmisas.sasimport.sasimport">
+<span class="sig-prename descclassname"><span class="pre">diffpy.cmisas.sasimport.</span></span><span class="sig-name descname"><span class="pre">sasimport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">modname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/cmisas/sasimport.html#sasimport"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.cmisas.sasimport.sasimport" title="Link to this definition"></a></dt>
+<dd><p>Import specified module from the SasView sas package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>modname</strong> – absolute module name contained in the sas package.</p></li>
+<li><p><strong>directly</strong> (<em>When specified import does not work</em>)</p></li>
+<li><p><strong>raise</strong> (<em>try older API-s and</em>)</p></li>
+<li><p><strong>works.</strong> (<em>DeprecationWarning.  Raise ImportError if nothing</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting-started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../release.html" class="btn btn-neutral float-right" title="Release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Simon Billinge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

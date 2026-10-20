@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>diffpy.cmisas.characteristicfunctions &mdash; diffpy.cmisas 0.1.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9205c5d6"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            diffpy.cmisas
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.cmisas.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">diffpy.cmisas</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">diffpy.cmisas.characteristicfunctions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for diffpy.cmisas.characteristicfunctions</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">##############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># diffpy.srfit      by DANSE Diffraction group</span>
+<span class="c1">#                   Simon J. L. Billinge</span>
+<span class="c1">#                   (c) 2010 The Trustees of Columbia University</span>
+<span class="c1">#                   in the City of New York.  All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># File coded by:    Chris Farrow</span>
+<span class="c1">#</span>
+<span class="c1"># See AUTHORS.txt for a list of people who contributed.</span>
+<span class="c1"># See LICENSE_DANSE.txt for license information.</span>
+<span class="c1">#</span>
+<span class="c1">##############################################################################</span>
+<span class="sd">"""Characteristic function calculator backed by sasmodels."""</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"SASCF"</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">log2</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.fft</span><span class="w"> </span><span class="kn">import</span> <span class="n">fftfreq</span><span class="p">,</span> <span class="n">ifft</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srfit.fitbase.calculator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Calculator</span>
+
+
+<div class="viewcode-block" id="SASCF">
+<a class="viewcode-back" href="../../../api/diffpy.cmisas.html#diffpy.cmisas.characteristicfunctions.SASCF">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SASCF</span><span class="p">(</span><span class="n">Calculator</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Calculator class for characteristic functions from sas-models.</span>
+
+<span class="sd">    This class wraps a sas.models.BaseModel to calculate I(Q) related to</span>
+<span class="sd">    nanoparticle shape. This I(Q) is inverted to f(r) according to:</span>
+<span class="sd">    f(r) = 1 / (4 pi r) * SINFT(I(Q)),</span>
+<span class="sd">    where "SINFT" represents the sine Fourier transform.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    _model</span>
+<span class="sd">        BaseModel object this adapts.</span>
+<span class="sd">    Managed Parameters</span>
+<span class="sd">        These depend on the parameters of the BaseModel object held by _model.</span>
+<span class="sd">        They are created from the 'params' attribute of the BaseModel. If a</span>
+<span class="sd">        dispersion is set for the BaseModel, the dispersion "width" will be</span>
+<span class="sd">        accessible under "&lt;parname&gt;_width", where &lt;parname&gt; is the name a</span>
+<span class="sd">        parameter adjusted by dispersion.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Initialize the generator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            The name for the SASCF.</span>
+<span class="sd">        model : BaseModel</span>
+<span class="sd">            The sas.models.BaseModel object this adapts.</span>
+<span class="sd">        """</span>
+        <span class="n">Calculator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.cmisas.sasparameter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SASParameter</span>
+
+        <span class="c1"># Wrap normal parameters</span>
+        <span class="k">for</span> <span class="n">parname</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">:</span>
+            <span class="n">par</span> <span class="o">=</span> <span class="n">SASParameter</span><span class="p">(</span><span class="n">parname</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">par</span><span class="p">)</span>
+
+        <span class="c1"># Wrap dispersion parameters</span>
+        <span class="k">for</span> <span class="n">parname</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">dispersion</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">parname</span> <span class="o">+</span> <span class="s2">"_width"</span>
+            <span class="n">parname</span> <span class="o">+=</span> <span class="s2">".width"</span>
+            <span class="n">par</span> <span class="o">=</span> <span class="n">SASParameter</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">parname</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_parameter</span><span class="p">(</span><span class="n">par</span><span class="p">)</span>
+
+        <span class="k">return</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Calculate the characteristic function from the transform of</span>
+<span class="sd">        the BaseModel."""</span>
+        <span class="c1"># Determine q-values.</span>
+        <span class="c1"># We want very fine r-spacing so we can properly normalize f(r). This</span>
+        <span class="c1"># equates to having a large qmax so that the Fourier transform is</span>
+        <span class="c1"># finely spaced. We also want the calculation to be fast, so we pick</span>
+        <span class="c1"># qmax such that the number of q-points is a power of 2. This allows us</span>
+        <span class="c1"># to use the fft.</span>
+        <span class="c1">#</span>
+        <span class="c1"># The initial dr is somewhat arbitrary, but using dr = 0.01 allows for</span>
+        <span class="c1"># the f(r) calculated from a particle of diameter 50, over r =</span>
+        <span class="c1"># arange(1, 60, 0.1) to agree with the spherical_particle with Rw &lt;</span>
+        <span class="c1"># 1e-4%.</span>
+        <span class="c1">#</span>
+        <span class="c1"># We also have to make a q-spacing small enough to compute out to at</span>
+        <span class="c1"># least the size of the signal.</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">"As of release 3.2.0, SAS characteristic functions are not working"</span>
+            <span class="o">+</span> <span class="s2">" but we hope to have them working again in a future release."</span>
+        <span class="p">)</span>
+
+        <span class="n">dr</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ed</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">calculate_ER</span><span class="p">()</span>
+
+        <span class="c1"># Check for nans. If we find any, then return zeros.</span>
+        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ed</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">y</span>
+
+        <span class="n">rmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ed</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">dq</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">/</span> <span class="n">rmax</span>
+        <span class="n">qmax</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">/</span> <span class="n">dr</span>
+        <span class="n">numpoints</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">qmax</span> <span class="o">/</span> <span class="n">dq</span><span class="p">))))</span>
+        <span class="n">qmax</span> <span class="o">=</span> <span class="n">dq</span> <span class="o">*</span> <span class="n">numpoints</span>
+
+        <span class="c1"># Calculate F(q) = q * I(q) from model</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">fftfreq</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">qmax</span> <span class="o">/</span> <span class="n">dq</span><span class="p">))</span> <span class="o">*</span> <span class="n">qmax</span>
+        <span class="n">fq</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">evalDistribution</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+        <span class="c1"># Calculate g(r) and the effective r-points</span>
+        <span class="n">rp</span> <span class="o">=</span> <span class="n">fftfreq</span><span class="p">(</span><span class="n">numpoints</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="n">dq</span>
+        <span class="c1"># Note sine transform = imaginary part of ifft</span>
+        <span class="n">gr</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">fq</span><span class="p">)</span><span class="o">.</span><span class="n">imag</span>
+
+        <span class="c1"># Calculate full-fr for normalization</span>
+        <span class="k">assert</span> <span class="n">rp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span>
+        <span class="n">frp</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">gr</span><span class="p">)</span>
+        <span class="n">frp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">gr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="n">rp</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c1"># Inerpolate onto requested grid, do not use data after jump in rp</span>
+        <span class="k">assert</span> <span class="n">numpoints</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">nhalf</span> <span class="o">=</span> <span class="n">numpoints</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">fr</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rp</span><span class="p">[:</span><span class="n">nhalf</span><span class="p">],</span> <span class="n">gr</span><span class="p">[:</span><span class="n">nhalf</span><span class="p">])</span>
+        <span class="n">vmask</span> <span class="o">=</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="n">fr</span><span class="p">[</span><span class="n">vmask</span><span class="p">]</span> <span class="o">/=</span> <span class="n">r</span><span class="p">[</span><span class="n">vmask</span><span class="p">]</span>
+
+        <span class="c1"># Normalize. We approximate fr[0] by using the fact that f(r) is linear</span>
+        <span class="c1"># at low r. By definition, fr[0] should equal 1.</span>
+        <span class="n">fr0</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">frp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">frp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">fr</span> <span class="o">/=</span> <span class="n">fr0</span>
+
+        <span class="c1"># Fix potential divide-by-zero issue, fr is 1 at r == 0</span>
+        <span class="n">fr</span><span class="p">[</span><span class="o">~</span><span class="n">vmask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">fr</span></div>
+
+
+
+<span class="c1"># End of file</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Simon Billinge.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
