@@ -20,8 +20,8 @@ ProfileGenerator.
 
 __all__ = ["SASGenerator"]
 
-from diffpy.srfit.fitbase import ProfileGenerator
 from diffpy.cmisas.sasparameter import SASParameter
+from diffpy.srfit.fitbase import ProfileGenerator
 
 
 class SASGenerator(ProfileGenerator):
