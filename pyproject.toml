@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "diffpy.cmisas"
 dynamic=['version', 'dependencies']
 authors = [
-  { name="Simon Billinge", email="sb2896@columbia.edu" },
+  { name="Simon Billinge", email="sbillinge@ucsb.edu" },
 ]
 maintainers = [
-  { name="Simon Billinge", email="sb2896@columbia.edu" },
+  { name="Simon Billinge", email="sbillinge@ucsb.edu" },
 ]
 description = "The code of the SAS pack of the diffpy.cmi package."
 keywords = ['Small angle scattering', 'PDF', 'x-ray neutron']
